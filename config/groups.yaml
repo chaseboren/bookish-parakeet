@@ -10,3 +10,5 @@ default_view:
     - media_player.living_room
     - alarm_control_panel.simplisafe
     - device_tracker.chase_boren
+    - switch.ge_14282_plugin_twooutlet_smart_switch_switch
+    - binary_sensor.gas_sensor

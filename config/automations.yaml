@@ -24,3 +24,16 @@
       message: Using TheBorenBot to send a message
       title: '*Send a message*'
     service: notify.telegram_notify
+- id: '1542059544164'
+  alias: Basement Gas Alarm
+  trigger:
+  - entity_id: binary_sensor.gas_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: There is gas in the basement!!
+      title: 'ALERT'
+    service: notify.telegram_notify

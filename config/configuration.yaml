@@ -116,15 +116,18 @@ panel_iframe:
     url: 'http://maggie.local:3000/d/EB2Zf0Zgz/maggie-statistics?refresh=1m&orgId=1&from=1541282596267&to=1541293396267'
 
 mqtt:
-    broker: 127.0.0.1
+    broker: 192.168.86.101
 
 binary_sensor:
-   - plaform: mqtt
+   - platform: mqtt
      name: "Gas Sensor"
-     state_topic: "gas_sensor/raspberrypi"
-     payload_on: "Gas present"
-     payload_off: "No gas present"
+     state_topic: "/gas_sensor/state/raspberrypi/out"
+     payload_on: "ON"
+     payload_off: "OFF"
      device_class: gas
+     availability_topic: "/gas_sensor/availability/raspberrypi"
+     payload_available: "online"
+     payload_not_available: "offline"
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
