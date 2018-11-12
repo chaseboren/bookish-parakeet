@@ -1,0 +1,9 @@
+light.ge_12724_3way_dimmer_switch_level:
+  ignored: false
+  polling_intensity: 1
+light.ge_12724_3way_dimmer_switch_level_2:
+  ignored: false
+  polling_intensity: 1
+light.ge_12724_3way_dimmer_switch_level_4:
+  ignored: false
+  polling_intensity: 1

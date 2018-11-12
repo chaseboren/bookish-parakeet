@@ -1,0 +1,122 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Boren Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 38.788415
+  longitude: -77.075445
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+  # auth providers
+#  auth_providers:
+#   -type: trusted_networks
+#    trusted_networks:
+#    - 127.0.0.1
+#    - ::1
+#    - 192.168.0.0/24
+#    - fd00::/8
+
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+#Z-wave
+zwave:
+  usb_path: /dev/zwave
+
+#http:
+http:
+  api_password: !secret http_api_password
+
+ios:
+
+simplisafe:
+  accounts: 
+   - username: !secret simplisafe_uname
+     password: !secret simplisafe_pwd
+
+#Telegram
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_chase
+
+notify:
+  - name: telegram_notify
+    platform: telegram
+    chat_id: !secret telegram_chase
+#influxdb
+influxdb:
+
+climate:
+  - platform: zwave
+    #  - platform: generic_thermostat
+    # name: Fiona's Heat
+    #heater: switch.fionasheat
+    # target_sensor: sensor.aeotec_zw100_multisensor_6_temperature
+
+panel_iframe:
+  server:
+    title: 'Server'
+    url: 'http://maggie.local:3000/d/EB2Zf0Zgz/maggie-statistics?refresh=1m&orgId=1&from=1541282596267&to=1541293396267'
+
+
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

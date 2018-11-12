@@ -1,0 +1,10 @@
+group.all_lights:
+  hidden: false
+  friendly_name: Lights
+group.all_automations:
+  hidden: false
+  friendly_name: Automation
+group.all_devices:
+  hidden: false
+sensor.2gig_technologies_ct101_thermostat_iris_indicator:
+  device_class: humidity

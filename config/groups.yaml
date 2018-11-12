@@ -1,0 +1,12 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.all_lights
+    - group.all_automations
+    - sun.sun
+    - sensor.yr_symbol
+    - media_player.kitchen
+    - media_player.living_room
+    - alarm_control_panel.simplisafe
+    - device_tracker.chase_boren
