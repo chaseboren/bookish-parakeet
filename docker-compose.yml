@@ -6,6 +6,7 @@ services:
       volumes:
         - /home/chase/config:/config
         - /etc/localtime:/etc/localtime:ro
+        - /home/dehydrated/dehydrated/certs/bookish-parakeet.duckdns.org:/home
       devices:
         - /dev/ttyACM0:/dev/zwave:rwm
         - /dev/vhci:/dev/hdmi/:rwm

@@ -40,7 +40,8 @@ Thumbs.db
 .*
 !.gitignore
 !.git
-
+certs
+*.pem
 #personal stuff
 tts
 secrets.yaml
