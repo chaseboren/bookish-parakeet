@@ -2,7 +2,7 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Boren Home
   # Location required to calculate the time the sun rises and sets
-  latitude: !ssecret lat 
+  latitude: !secret lat 
   longitude: !secret long
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 0
