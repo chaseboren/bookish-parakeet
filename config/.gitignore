@@ -46,3 +46,4 @@ Thumbs.db
 tts
 secrets.yaml
 core
+certs/*

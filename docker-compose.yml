@@ -2,7 +2,7 @@ version: '3'
 services: 
    homeassistant:
       container_name: home-assistant
-      image: homeassistant/armhf-homeassistant:0.81.4
+      image: homeassistant/armhf-homeassistant:0.82.0
       volumes:
         - /home/chase/config:/config
         - /etc/localtime:/etc/localtime:ro
@@ -40,7 +40,8 @@ services:
   #   links:
   #     - influxdb
      network_mode: host
-     depends_on: "influxdb"
+     depends_on: 
+       - "influxdb"
      restart: always   
    mqtt:
     image: eclipse-mosquitto:latest
