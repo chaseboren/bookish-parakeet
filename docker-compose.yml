@@ -39,7 +39,9 @@ services:
        - /var/run/docker.sock:/var/run/docker.sock
   #   links:
   #     - influxdb
-     network_mode: host   
+     network_mode: host
+     depends_on: "influxdb"
+     restart: always   
    mqtt:
     image: eclipse-mosquitto:latest
     restart: always
