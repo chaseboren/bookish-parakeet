@@ -6,7 +6,7 @@ class DarkSkyWeatherCard extends HTMLElement {
       const link = document.createElement('link');
       link.type = 'text/css';
       link.rel = 'stylesheet';
-      link.href = '/local/custom_ui/dark-sky-weather-card.css';
+      link.href = '/local/ui-lovelace/dark-sky-weather-card.css';
       card.appendChild(link);
       this.content = document.createElement('div');
       this.content.className = 'card';
@@ -15,7 +15,7 @@ class DarkSkyWeatherCard extends HTMLElement {
     }
 
     const getUnit = function (measure) {
-      const lengthUnit = hass.config.core.unit_system.length;
+      const lengthUnit = hass.config.unit_system.length;
       switch (measure) {
         case 'air_pressure':
           return lengthUnit === 'km' ? 'hPa' : 'inHg';
@@ -24,7 +24,7 @@ class DarkSkyWeatherCard extends HTMLElement {
         case 'precipitation':
           return lengthUnit === 'km' ? 'mm' : 'in';
         default:
-          return hass.config.core.unit_system[measure] || '';
+          return hass.config.unit_system[measure] || '';
       }
     };
 

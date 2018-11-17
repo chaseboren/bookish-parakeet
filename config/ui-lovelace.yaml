@@ -1,5 +1,5 @@
 resources:
-  - url: /local/custom_ui/dark-sky-weather-card.js?v=4
+  - url: /local/ui-lovelace/dark_sky_weather_card.js?v=6
     type: js
 title: The Boren Home
 views:
@@ -16,26 +16,31 @@ views:
         entity: light.ge_12724_3way_dimmer_switch_level_4
       - type: conditional
         conditions:
-          - entity: binary_sensor.heat_availble
+          - entity: binary_sensor.heat_available
             state: "on"
         card:
-          - type: thermostat
-            entity: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+          type: thermostat
+          entity: climate.2gig_technologies_ct101_thermostat_iris_heating_1
       - type: conditional
         conditions:
-          - entity: binary_sensor.ac_availble
+          - entity: binary_sensor.ac_available
             state: "on"
         card:
-          - type: thermostat
-            entity: climate.2gig_technologies_ct101_thermostat_iris_cooling_1
+          type: thermostat
+          entity: climate.2gig_technologies_ct101_thermostat_iris_cooling_1
       - type: entity-filter
         entities:
          - media_player.kitchen
          - media_player.living_room
         state_filter: 
-         - "on"
+         - 'playing'
+         - 'paused'
       - type: alarm-panel
         entity: alarm_control_panel.simplisafe
+      - type: entity-button
+        entity: script.good_night
+      - type: entity-button
+        entity: script.1542494027740
   - title: Weather
     cards:
     - type: custom:dark-sky-weather-card
@@ -64,5 +69,6 @@ views:
       entity_forecast_icon_4: sensor.dark_sky_icon_4
       entity_forecast_icon_5: sensor.dark_sky_icon_5
     - type: iframe
+      title: Map
       url: https://darksky.net/map-embed/@radar,38.872,-77.068,11.js?embed=true&timeControl=false&fieldControl=false&defaultField=radar
 
