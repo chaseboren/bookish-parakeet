@@ -40,6 +40,7 @@ Thumbs.db
 .*
 !.gitignore
 !.git
+!.travis.yml
 
 #personal stuff
 tts
