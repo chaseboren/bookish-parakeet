@@ -8,7 +8,7 @@ services:
         - /etc/localtime:/etc/localtime:ro
       devices:
         - /dev/ttyACM0:/dev/zwave:rwm
-        - /dev/vhci:/dev/hdmi/:rwm
+#        - /dev/vhci:/dev/hdmi/:rwm
       restart: always
       network_mode: host
    influxdb:
