@@ -1,10 +1,10 @@
 good_night:
   alias: Good Night
   sequence:
-  - service: homeassistant.turn_off
-    data:
+  - data:
       entity_id: group.all_lights
-  - service: alarm_control_panel.arm_home
+    service: homeassistant.turn_off
+  - service: alarm_control_panel.alarm_arm_home
 '1542494027740':
   alias: Vacation
   sequence:

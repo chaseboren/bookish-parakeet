@@ -35,5 +35,21 @@
   action:
   - data:
       message: There is gas in the basement!!
-      title: 'ALERT'
+      title: ALERT
     service: notify.telegram_notify
+- id: '1542675379332'
+  alias: Away Lights
+  trigger:
+  - event: sunset
+    offset: '-25'
+    platform: sun
+  - at: '21:30:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.simplisafe
+    state: arm_away
+  action:
+  - data:
+      entity_id: group_all lights
+    service: homeassistant.toggle
