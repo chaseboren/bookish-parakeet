@@ -170,6 +170,13 @@ binary_sensor:
      higher: 75
      name: AC_available
      
+
+media_player:
+   - platform: denonavr
+     host: 192.168.86.145
+     show_all_sources: True
+     name: Receiver
+     
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
