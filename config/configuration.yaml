@@ -113,6 +113,9 @@ zwave:
 #http:
 http:
   api_password: !secret http_api_password
+  ssl_certificate: !secret sslCertPath
+  ssl_key: !secret sslKeyPath
+  base_url: !secret baseUrl
 
 ios:
 

@@ -41,7 +41,8 @@ Thumbs.db
 !.gitignore
 !.git
 !.travis.yml
-
+certs
+*.pem
 #personal stuff
 tts
 secrets.yaml
