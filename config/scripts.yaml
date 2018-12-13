@@ -1,0 +1,26 @@
+good_night:
+  alias: Good Night
+  sequence:
+  - data:
+      entity_id: group.all_lights
+    service: homeassistant.turn_off
+  - service: alarm_control_panel.alarm_arm_home
+'1542494027740':
+  alias: Vacation
+  sequence:
+  - data: {}
+    service: alarm_control_panel.alarm_arm_away
+  - data:
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+      operation_mode: Heat
+    service: climate.set_operation_mode
+  - data:
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+      temperature: '60'
+    service: climate.set_temperature
+  - data:
+      entity_id: group.all_lights
+    service: homeassistant.turn_off
+  - data:
+      entity_id: switch.ge_14282_plugin_twooutlet_smart_switch_switch
+    service: switch.turn_off

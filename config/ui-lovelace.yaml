@@ -1,0 +1,74 @@
+resources:
+  - url: /local/ui-lovelace/dark_sky_weather_card.js?v=6
+    type: js
+title: The Boren Home
+views:
+    # View tab title.
+  - title: Overview
+    # Makes the first card fill the view
+    cards:
+        # The markdown card will render markdown text.
+      - type: light
+        entity: light.ge_12724_3way_dimmer_switch_level
+      - type: light
+        entity: light.ge_12724_3way_dimmer_switch_level_2
+      - type: light
+        entity: light.ge_12724_3way_dimmer_switch_level_4
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.heat_available
+            state: "on"
+        card:
+          type: thermostat
+          entity: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.ac_available
+            state: "on"
+        card:
+          type: thermostat
+          entity: climate.2gig_technologies_ct101_thermostat_iris_cooling_1
+      - type: entity-filter
+        entities:
+         - media_player.kitchen
+         - media_player.living_room
+        state_filter: 
+         - 'playing'
+         - 'paused'
+      - type: alarm-panel
+        entity: alarm_control_panel.simplisafe
+      - type: entity-button
+        entity: script.good_night
+      - type: entity-button
+        entity: script.1542494027740
+  - title: Weather
+    cards:
+    - type: custom:dark-sky-weather-card
+      entity_sun: sun.sun
+      entity_daily_summary: sensor.dark_sky_daily_summary
+      entity_current_conditions: sensor.dark_sky_icon  
+      entity_humidity: sensor.dark_sky_humidity
+      entity_pressure: sensor.dark_sky_pressure
+      entity_temperature: sensor.dark_sky_temperature
+      entity_visibility: sensor.dark_sky_visibility
+      entity_wind_bearing: sensor.dark_sky_wind_bearing
+      entity_wind_speed: sensor.dark_sky_wind_speed
+      entity_forecast_high_temp_1: sensor.dark_sky_daytime_high_temperature_1
+      entity_forecast_high_temp_2: sensor.dark_sky_daytime_high_temperature_2
+      entity_forecast_high_temp_3: sensor.dark_sky_daytime_high_temperature_3
+      entity_forecast_high_temp_4: sensor.dark_sky_daytime_high_temperature_4
+      entity_forecast_high_temp_5: sensor.dark_sky_daytime_high_temperature_5
+      entity_forecast_low_temp_1: sensor.dark_sky_overnight_low_temperature
+      entity_forecast_low_temp_2: sensor.dark_sky_overnight_low_temperature_1
+      entity_forecast_low_temp_3: sensor.dark_sky_overnight_low_temperature_2
+      entity_forecast_low_temp_4: sensor.dark_sky_overnight_low_temperature_3
+      entity_forecast_low_temp_5: sensor.dark_sky_overnight_low_temperature_4
+      entity_forecast_icon_1: sensor.dark_sky_icon_1
+      entity_forecast_icon_2: sensor.dark_sky_icon_2
+      entity_forecast_icon_3: sensor.dark_sky_icon_3
+      entity_forecast_icon_4: sensor.dark_sky_icon_4
+      entity_forecast_icon_5: sensor.dark_sky_icon_5
+    - type: iframe
+      title: Map
+      url: https://darksky.net/map-embed/@radar,38.872,-77.068,11.js?embed=true&timeControl=false&fieldControl=false&defaultField=radar
+

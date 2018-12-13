@@ -2,14 +2,14 @@ version: '3'
 services: 
    homeassistant:
       container_name: home-assistant
-      image: homeassistant/armhf-homeassistant:0.81.4
+      image: homeassistant/armhf-homeassistant:0.82.0
       volumes:
         - /home/chase/config:/config
         - /etc/localtime:/etc/localtime:ro
         - /home/dehydrated/dehydrated/certs/bookish-parakeet.duckdns.org:/home
       devices:
         - /dev/ttyACM0:/dev/zwave:rwm
-        - /dev/vhci:/dev/hdmi/:rwm
+#        - /dev/vhci:/dev/hdmi/:rwm
       restart: always
       network_mode: host
    influxdb:
@@ -40,7 +40,10 @@ services:
        - /var/run/docker.sock:/var/run/docker.sock
   #   links:
   #     - influxdb
-     network_mode: host   
+     network_mode: host
+     depends_on: 
+       - "influxdb"
+     restart: always   
    mqtt:
     image: eclipse-mosquitto:latest
     restart: always

@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Boren Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 38.788415
-  longitude: -77.075445
+  latitude: !secret lat 
+  longitude: !secret long
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 0
   # metric for Metric, imperial for Imperial
@@ -65,6 +65,39 @@ sun:
 # Weather prediction
 sensor:
   - platform: yr
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    forecast:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    monitored_conditions:
+      - icon
+      - summary
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - humidity
+      - temperature
+      - temperature_high
+      - temperature_low
+      - apparent_temperature
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - wind_speed
+      - wind_bearing
+      - precip_type
+      - precip_probability
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - uv_index
+      - daily_summary
+      - pressure
+      - visibility
+    update_interval:
+      minutes: 5
 
 # Text to speech
 tts:
@@ -108,15 +141,12 @@ influxdb:
 
 climate:
   - platform: zwave
-    #  - platform: generic_thermostat
-    # name: Fiona's Heat
-    #heater: switch.fionasheat
-    # target_sensor: sensor.aeotec_zw100_multisensor_6_temperature
+      
 
 panel_iframe:
   server:
     title: 'Server'
-    url: 'http://maggie.local:3000/d/EB2Zf0Zgz/maggie-statistics?refresh=1m&orgId=1&from=1541282596267&to=1541293396267'
+    url: 'http://maggie.local:3000/d/EB2Zf0Zgz/maggie-statistics?refresh=1m&orgId=1'
 
 mqtt:
     broker: 192.168.86.101
@@ -131,6 +161,15 @@ binary_sensor:
      availability_topic: "/gas_sensor/availability/raspberrypi"
      payload_available: "online"
      payload_not_available: "offline"
+   - platform: threshold
+     entity_id: sensor.dark_sky_overnight_low_temperature
+     lower: 60
+     name: heat_available
+   - platform: threshold
+     entity_id: sensor.dark_sky_daytime_high_temeperature
+     higher: 75
+     name: AC_available
+     
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

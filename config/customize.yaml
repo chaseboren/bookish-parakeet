@@ -8,3 +8,7 @@ group.all_devices:
   hidden: false
 sensor.2gig_technologies_ct101_thermostat_iris_indicator:
   device_class: humidity
+climate.2gig_technologies_ct101_thermostat_iris_heating_1:
+  friendly_name: Heat
+climate.2gig_technologies_ct101_thermostat_iris_cooling_1:
+  friendly_name: A/C
