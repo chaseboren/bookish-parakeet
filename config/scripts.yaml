@@ -5,6 +5,9 @@ good_night:
       entity_id: group.all_lights
     service: homeassistant.turn_off
   - service: alarm_control_panel.alarm_arm_home
+  - data:
+      entity_id: switch.tv_power
+    service: switch.turn_off
 '1542494027740':
   alias: Vacation
   sequence:
