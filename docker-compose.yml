@@ -22,8 +22,8 @@ services:
         - /srv/docker/influxdb:/etc/influxdb/
         - /srv/docker/influxdb/db:/var/lib/influxdb
       environment:
-        - INFLUX_GRAPHITE_ENABLED: 'true'
-        - INFLUXDB_DB: home_assistant
+        - INFLUX_GRAPHITE_ENABLED=true
+        - INFLUXDB_DB=home_assistant
       network_mode: host
    grafana:
       container_name: grafana

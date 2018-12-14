@@ -113,8 +113,8 @@ zwave:
 #http:
 http:
   api_password: !secret http_api_password
-  ssl_certificate: !secret sslCertPath
-  ssl_key: !secret sslKeyPath
+#  ssl_certificate: !secret sslCertPath
+#  ssl_key: !secret sslKeyPath
   base_url: !secret baseUrl
 
 ios:
@@ -172,11 +172,10 @@ binary_sensor:
      
 
 media_player:
-   - platform: denonavr
+   - platform: denon
      host: 192.168.86.145
-     show_all_sources: True
-     name: Receiver
-     
+   - platform: roku
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
