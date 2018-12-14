@@ -17,13 +17,13 @@ services:
    influxdb:
       container_name: influxdb
       restart: always
-      image: arm32v7/influxdb:latest
+      image: arm32v7/influxdb:1.6.4
       volumes:
         - /srv/docker/influxdb:/etc/influxdb/
         - /srv/docker/influxdb/db:/var/lib/influxdb
       environment:
-        - INFLUX_GRAPHITE_ENABLED=true
-        - INFLUXDB_DB=home_assistant
+        INFLUXDB_DB: "home_assistant"
+        INFLUXDB_GRAPHITE_ENABLED: 'true'
       network_mode: host
    grafana:
       container_name: grafana
