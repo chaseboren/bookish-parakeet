@@ -27,3 +27,70 @@ good_night:
   - data:
       entity_id: switch.ge_14282_plugin_twooutlet_smart_switch_switch
     service: switch.turn_off
+'1544977518035':
+  alias: Select AV Receiver
+  sequence:
+  - data:
+      entity_id: switch.tv_power
+    service: homeassistant.turn_on
+  - data:
+      entity_id: media_player.65_tcl_roku_tv
+      source: tvinput.hdmi3
+    service: media_player.select_source
+'1544981694997':
+  alias: Nintendo Switch
+  sequence:
+  - data: {}
+    service: script.1544977518035
+  - data: {}
+    service: script.1544987400815
+'1544985448682':
+  alias: Chromecast
+  sequence:
+  - alias: ''
+    data: {}
+    service: script.1544977518035
+  - data:
+      entity_id: media_player.denon_avrs640h
+      source: Chromecast
+    service: media_player.select_source
+'1544987400815':
+  alias: Nintendo II
+  sequence:
+  - data:
+      entity_id: media_player.denon_avrs640h
+      source: DVD
+    service: media_player.select_source
+'1544989636065':
+  alias: Playstation 3 II
+  sequence:
+  - data:
+      entity_id: media_player.denon_avrs640h
+      source: PS3
+    service: media_player.select_source
+'1544989696744':
+  alias: Playstation 3
+  sequence:
+  - data: {}
+    service: script.1544977518035
+  - service: script.1544989636065
+'1544990032011':
+  alias: Blu-ray II
+  sequence:
+  - data:
+      entity_id: media_player.denon_avrs640h
+      source: Blu-ray
+    service: media_player.select_source
+'1544990070146':
+  alias: Blu-ray
+  sequence:
+  - data: {}
+    service: script.1544977518035
+  - service: script.1544990032011
+'1544995718682':
+  alias: Roku
+  sequence:
+  - data:
+      entity_id: media_player.65_tcl_roku_tv
+      source: Home
+    service: media_player.select_source
