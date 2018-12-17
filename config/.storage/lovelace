@@ -1,0 +1,208 @@
+{
+    "data": {
+        "config": {
+            "resources": [
+                {
+                    "type": "js",
+                    "url": "/local/ui-lovelace/mini-media-player-bundle.js?v=0.9.7"
+                }
+            ],
+            "title": "Boren Home",
+            "views": [
+                {
+                    "badges": [
+                        "binary_sensor.gas_sensor",
+                        "device_tracker.chase_boren",
+                        "sensor.yr_symbol",
+                        "sun.sun"
+                    ],
+                    "cards": [
+                        {
+                            "entity": "light.ge_12724_3way_dimmer_switch_level",
+                            "name": "Master Bedroom",
+                            "type": "light"
+                        },
+                        {
+                            "entity": "light.ge_12724_3way_dimmer_switch_level_2",
+                            "name": "Kitchen",
+                            "type": "light"
+                        },
+                        {
+                            "entity": "light.ge_12724_3way_dimmer_switch_level_3",
+                            "name": "Living Room",
+                            "type": "light"
+                        },
+                        {
+                            "entity": "alarm_control_panel.2431_fort_dr",
+                            "type": "alarm-panel"
+                        },
+                        {
+                            "card": {
+                                "entity": "climate.2gig_technologies_ct101_thermostat_iris_heating_1",
+                                "type": "thermostat"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "binary_sensor.heat_available",
+                                    "state": "on"
+                                }
+                            ],
+                            "type": "conditional"
+                        },
+                        {
+                            "card": {
+                                "entity": "climate.2gig_technologies_ct101_thermostat_iris_cooling_1",
+                                "type": "thermostat"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "binary_sensor.ac_available",
+                                    "state": "on"
+                                }
+                            ],
+                            "type": "conditional"
+                        },
+                        {
+                            "entities": [
+                                "media_player.kitchen",
+                                "media_player.living_room"
+                            ],
+                            "state_filter": [
+                                "playing",
+                                "paused"
+                            ],
+                            "type": "entity-filter"
+                        },
+                        {
+                            "entity": "script.good_night",
+                            "icon": "mdi:weather-night",
+                            "type": "entity-button"
+                        },
+                        {
+                            "entity": "script.1542494027740",
+                            "icon": "mdi:door-closed",
+                            "type": "entity-button"
+                        },
+                        {
+                            "action": "call-service",
+                            "entity": "switch.tv_power",
+                            "name": "Media Center",
+                            "service": "switch.ge_14282_plugin_twooutlet_smart_switch_switch",
+                            "service_data": {
+                                "entity_id": "switch.ge_14282_plugin_twooutlet_smart_switch_switch"
+                            },
+                            "tap_action": null,
+                            "type": "entity-button"
+                        }
+                    ],
+                    "icon": "mdi:home",
+                    "path": "default_view",
+                    "title": "default_view"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "action": "call-service",
+                            "entity": "switch.tv_power",
+                            "icon": "mdi:television",
+                            "name": "System Power",
+                            "service": "switch.toggle",
+                            "service_data": {
+                                "entity_id": "switch.tv_power"
+                            },
+                            "tap_action": null,
+                            "type": "entity-button"
+                        },
+                        {
+                            "artwork": "none",
+                            "entity": "media_player.denon_avrs640h",
+                            "hide_controls": true,
+                            "hide_icon": true,
+                            "hide_info": true,
+                            "hide_power": true,
+                            "title": "Volume",
+                            "type": "custom:mini-media-player"
+                        },
+                        {
+                            "artwork": "none",
+                            "entity": "media_player.roku",
+                            "hide_controls": false,
+                            "hide_icon": true,
+                            "hide_info": "fals",
+                            "hide_power": true,
+                            "hide_volume": true,
+                            "show_source": "full",
+                            "title": "Roku Source",
+                            "type": "custom:mini-media-player"
+                        },
+                        {
+                            "action": "call-service",
+                            "entity": "script.1544995718682",
+                            "icon": "mdi:cast",
+                            "name": "Select Roku",
+                            "service": "script.turn_on",
+                            "service_data": {
+                                "entity_id": "script.1544995718682"
+                            },
+                            "tap_action": null,
+                            "type": "entity-button"
+                        },
+                        {
+                            "action": "call-service",
+                            "entity": "script.1544985448682",
+                            "icon": "mdi:google-chrome",
+                            "name": "Select Chromecast",
+                            "service": "script.turn_on",
+                            "service_data": {
+                                "entity_id": "script.1544985448682"
+                            },
+                            "tap_action": null,
+                            "type": "entity-button"
+                        },
+                        {
+                            "action": "call-service",
+                            "entity": "script.1544981694997",
+                            "icon": "mdi:nintendo-switch",
+                            "name": "Select Nintendo Switch",
+                            "service": "script.turn_on",
+                            "service_data": {
+                                "entity_id": "script.1544981694997"
+                            },
+                            "tap_action": null,
+                            "type": "entity-button"
+                        },
+                        {
+                            "action": "call-service",
+                            "entity": "script.1544990070146",
+                            "icon": "mdi:disc-player",
+                            "name": "Select Blu-ray",
+                            "service": "script.turn_on",
+                            "service_data": {
+                                "entity_id": "script.1544990070146"
+                            },
+                            "tap_action": null,
+                            "type": "entity-button"
+                        },
+                        {
+                            "action": "call-service",
+                            "entity": "script.1544989696744",
+                            "icon": "mdi:playstation",
+                            "name": "Select Playstation 3",
+                            "service": "script.turn_on",
+                            "service_data": {
+                                "entity_id": "script.1544989696744"
+                            },
+                            "tap_action": null,
+                            "type": "entity-button"
+                        }
+                    ],
+                    "path": "media_center",
+                    "title": "Living Room Media Center"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}

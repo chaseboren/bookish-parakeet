@@ -27,7 +27,7 @@ homeassistant:
 
 # Enables the frontend
 frontend:
-
+ javascript_version: latest
 # Enables configuration UI
 config:
 
@@ -162,11 +162,11 @@ binary_sensor:
      payload_available: "online"
      payload_not_available: "offline"
    - platform: threshold
-     entity_id: sensor.dark_sky_overnight_low_temperature
+     entity_id: sensor.dark_sky_overnight_low_temperature_1
      lower: 60
      name: heat_available
    - platform: threshold
-     entity_id: sensor.dark_sky_daytime_high_temeperature
+     entity_id: sensor.dark_sky_daytime_high_temeperature_1
      higher: 75
      name: AC_available
      

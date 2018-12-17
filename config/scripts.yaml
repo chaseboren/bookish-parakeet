@@ -34,7 +34,7 @@ good_night:
       entity_id: switch.tv_power
     service: homeassistant.turn_on
   - data:
-      entity_id: media_player.65_tcl_roku_tv
+      entity_id: media_player.roku
       source: tvinput.hdmi3
     service: media_player.select_source
 '1544981694997':
@@ -59,7 +59,7 @@ good_night:
   sequence:
   - data:
       entity_id: media_player.denon_avrs640h
-      source: DVD
+      source: Switch
     service: media_player.select_source
 '1544989636065':
   alias: Playstation 3 II
@@ -91,6 +91,6 @@ good_night:
   alias: Roku
   sequence:
   - data:
-      entity_id: media_player.65_tcl_roku_tv
+      entity_id: media_player.roku
       source: Home
     service: media_player.select_source
