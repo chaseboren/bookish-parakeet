@@ -33,7 +33,7 @@
                             "type": "light"
                         },
                         {
-                            "entity": "alarm_control_panel.2431_fort_dr",
+                            "entity": "alarm_control_panel.[REDACTED]",
                             "type": "alarm-panel"
                         },
                         {
