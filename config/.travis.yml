@@ -4,7 +4,7 @@ python:
 before_install:
   - mv travis_secrets.yaml secrets.yaml
   - touch /home/travis/privkey.pem
-  - touch /home/travis/pubkey.pem
+  - touch /home/travis/fullchain.pem
 install:
   - pip3 install homeassistant
 script:
