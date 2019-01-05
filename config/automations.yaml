@@ -53,3 +53,31 @@
   - data:
       entity_id: group_all lights
     service: homeassistant.toggle
+- id: '1546703559532'
+  alias: Normal Heat Program Day
+  trigger:
+  - at: 06:00:00
+    platform: time
+  condition:
+  - condition: state
+    entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+    state: heat
+  action:
+  - data:
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+      temperature: '69'
+    service: climate.set_temperature
+- id: '1546703770731'
+  alias: Normal Heat Program Night
+  trigger:
+  - at: 06:00:00
+    platform: time
+  condition:
+  - condition: state
+    entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+    state: heat
+  action:
+  - data:
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+      temperature: '65'
+    service: climate.set_temperature

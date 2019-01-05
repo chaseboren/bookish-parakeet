@@ -27,7 +27,7 @@ homeassistant:
 
 # Enables the frontend
 frontend:
-
+ javascript_version: latest
 # Enables configuration UI
 config:
 
@@ -64,6 +64,12 @@ sun:
 
 # Weather prediction
 sensor:
+  - platform: template
+    sensors:
+      basement_temperature:
+        value_template: !secret alarmvaluetemplate
+        unit_of_measurement: '°F'
+        device_class: temperature
   - platform: yr
   - platform: darksky
     api_key: !secret darksky_api_key
@@ -105,6 +111,40 @@ tts:
 
 # Cloud
 cloud:
+  google_actions:
+    filter:
+      exclude_entities:
+        - !secret alarmpanel
+#x        - media_player.roku
+    entity_config:
+      light.ge_12724_3way_dimmer_switch_level:
+        name: Master Bedroom Light
+        aliases: bedroom light
+        room: bedroom 
+      light.ge_12724_3way_dimmer_switch_level_2:
+        name: Kitchen Light
+        room: Kitchen
+      light.ge_12724_3way_dimmer_switch_level_3:
+        name: Living Room Light
+        room: living room
+      media_player.denon_avrs640h:
+        name: AV Receiver
+        aliases: receiver
+        room: living room
+      switch.tv_power:
+        name: living room TV
+        aliases: TV
+        room: living room
+      script.1544985448682:
+        aliases: select the chromecast
+      script.1544981694997:
+        aliases: select the switch
+      script.1544989696744:
+        aliases: select the playstation
+      script.1544990070146:
+        aliases: select the blue ray
+      script.1544995718682:
+        aliases: select the roku
 
 #Z-wave
 zwave:
@@ -113,8 +153,8 @@ zwave:
 #http:
 http:
   api_password: !secret http_api_password
-  ssl_certificate: !secret sslCertPath
-  ssl_key: !secret sslKeyPath
+#  ssl_certificate: !secret sslCertPath
+#  ssl_key: !secret sslKeyPath
   base_url: !secret baseUrl
 
 ios:
@@ -162,14 +202,30 @@ binary_sensor:
      payload_available: "online"
      payload_not_available: "offline"
    - platform: threshold
-     entity_id: sensor.dark_sky_overnight_low_temperature
+     entity_id: sensor.dark_sky_overnight_low_temperature_1
      lower: 60
      name: heat_available
    - platform: threshold
-     entity_id: sensor.dark_sky_daytime_high_temeperature
+     entity_id: sensor.dark_sky_daytime_high_temeperature_1
      higher: 75
      name: AC_available
      
+
+media_player:
+   - platform: denon
+     host: 192.168.86.145
+   - platform: roku
+     host: 192.168.86.144
+
+switch:
+  platform: command_line
+  switches:
+    tv_power:
+      command_on: 'curl -X POST http://192.168.86.144:8060/keypress/PowerOn'
+      command_off: 'curl -X POST http://192.168.86.144:8060/keypress/PowerOff'
+      command_state: 'curl -s GET http://192.168.86.144:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
+      value_template: '{{ value == "ON" }}'
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

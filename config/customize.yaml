@@ -12,3 +12,7 @@ climate.2gig_technologies_ct101_thermostat_iris_heating_1:
   friendly_name: Heat
 climate.2gig_technologies_ct101_thermostat_iris_cooling_1:
   friendly_name: A/C
+switch.tv_power:
+  friendly_name: TV Power
+sensor.yr_symbol:
+  friendly_name: Current Weather
