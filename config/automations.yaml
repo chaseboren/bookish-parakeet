@@ -70,7 +70,7 @@
 - id: '1546703770731'
   alias: Normal Heat Program Night
   trigger:
-  - at: 06:00:00
+  - at: '22:07:00'
     platform: time
   condition:
   - condition: state

@@ -2,10 +2,16 @@ language: python
 python:
   - "3.5"
 before_install:
-
+  - mv travis-password.txt password.txt
   - mv config/travis-secrets.yaml config/secrets.yaml
+  - touch /home/travis/fullchain.pem
+  - touch /home/travis/privkey.pem
 install:
   - pip3 install homeassistant
 script:
   - hass -c ./config --script check_config
+  - docker-compose config
+after_success:
+  - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+
 
