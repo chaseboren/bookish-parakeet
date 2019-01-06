@@ -227,7 +227,7 @@ switch:
       value_template: '{{ value == "ON" }}'
 
 recorder:
-  db_url: postgresql://@/homeassistant
+  db_url: !secret postgres
   purge_interval: 0
 
 group: !include groups.yaml
