@@ -73,5 +73,5 @@ services:
     secrets:
       - postgres_password
 secrets:
-  - postgres_password:
+  postgres_password:
     file: password.txt
