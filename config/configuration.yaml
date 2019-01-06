@@ -226,6 +226,10 @@ switch:
       command_state: 'curl -s GET http://192.168.86.144:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
       value_template: '{{ value == "ON" }}'
 
+recorder:
+  db_url: postgresql://@/homeassistant
+  purge_interval: 0
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
