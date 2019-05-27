@@ -8,6 +8,9 @@ good_night:
   - data:
       entity_id: switch.tv_power
     service: switch.turn_off
+  - data:
+      entity_id: switch.hall_light
+    service: switch.turn_off
 '1542494027740':
   alias: Vacation
   sequence:
@@ -42,30 +45,31 @@ good_night:
   sequence:
   - data: {}
     service: script.1544977518035
-  - data: {}
-    service: script.1544987400815
+  - delay: 00:00:05
+  - service: script.1544987400815
 '1544985448682':
   alias: Chromecast
   sequence:
   - alias: ''
     data: {}
     service: script.1544977518035
+  - delay: 00:00:05
   - data:
-      entity_id: media_player.denon_avrs640h
+      entity_id: media_player.denon_avr_s640h
       source: Chromecast
     service: media_player.select_source
 '1544987400815':
   alias: Nintendo II
   sequence:
   - data:
-      entity_id: media_player.denon_avrs640h
+      entity_id: media_player.denon_avr_s640h
       source: Switch
     service: media_player.select_source
 '1544989636065':
   alias: Playstation 3 II
   sequence:
   - data:
-      entity_id: media_player.denon_avrs640h
+      entity_id: media_player.denon_avr_s640h
       source: PS3
     service: media_player.select_source
 '1544989696744':
@@ -73,12 +77,13 @@ good_night:
   sequence:
   - data: {}
     service: script.1544977518035
+  - delay: 00:00:05
   - service: script.1544989636065
 '1544990032011':
   alias: Blu-ray II
   sequence:
   - data:
-      entity_id: media_player.denon_avrs640h
+      entity_id: media_player.denon_avr_s640h
       source: Blu-ray
     service: media_player.select_source
 '1544990070146':
@@ -86,6 +91,7 @@ good_night:
   sequence:
   - data: {}
     service: script.1544977518035
+  - delay: 00:00:05
   - service: script.1544990032011
 '1544995718682':
   alias: Roku

@@ -214,8 +214,9 @@ binary_sensor:
 media_player:
    - platform: denon
      host: 192.168.86.145
-   - platform: roku
-     host: 192.168.86.144
+
+roku:
+   - host: 192.168.86.144
 
 switch:
   platform: command_line
@@ -229,6 +230,8 @@ switch:
 recorder:
   db_url: !secret postgres
   purge_interval: 0
+
+system_health: 
 
 group: !include groups.yaml
 automation: !include automations.yaml
