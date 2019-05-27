@@ -102,12 +102,12 @@ sensor:
       - daily_summary
       - pressure
       - visibility
-    update_interval:
-      minutes: 5
+    scan_interval:
+      minutes: 30
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
 
 # Cloud
 cloud:
@@ -127,6 +127,12 @@ cloud:
       light.ge_12724_3way_dimmer_switch_level_3:
         name: Living Room Light
         room: living room
+      light.dining_room_light:
+        name: Dining Room Light
+        room: Kitchen
+      light.hall_light:
+        name: Hall Light
+        room: bedroom
       media_player.denon_avrs640h:
         name: AV Receiver
         aliases: receiver
@@ -145,17 +151,23 @@ cloud:
         aliases: select the blue ray
       script.1544995718682:
         aliases: select the roku
-
+light:
+ - platform: switch 
+   name: Hall Light
+   entity_id: switch.hall_light
+ - platform:  switch
+   name: Dinig Room Light
+   entity_id: switch.dining_room_light
 #Z-wave
 zwave:
   usb_path: /dev/zwave
 
 #http:
-http:
-  api_password: !secret http_api_password
+#http:
+#  api_password: !secret http_api_password
 #  ssl_certificate: !secret sslCertPath
 #  ssl_key: !secret sslKeyPath
-  base_url: !secret baseUrl
+#  base_url: !secret baseUrl
 
 ios:
 
@@ -177,16 +189,16 @@ notify:
     platform: telegram
     chat_id: !secret telegram_chase
 #influxdb
-influxdb:
+#influxdb:
 
 climate:
   - platform: zwave
       
 
-panel_iframe:
-  server:
-    title: 'Server'
-    url: 'http://maggie.local:3000/d/EB2Zf0Zgz/maggie-statistics?refresh=1m&orgId=1'
+#panel_iframe:
+#  server:
+#    title: 'Server'
+#    url: 'http://maggie.local:3000/d/EB2Zf0Zgz/maggie-statistics?refresh=1m&orgId=1'
 
 mqtt:
     broker: 192.168.86.101
@@ -202,11 +214,11 @@ binary_sensor:
      payload_available: "online"
      payload_not_available: "offline"
    - platform: threshold
-     entity_id: sensor.dark_sky_overnight_low_temperature_1
+     entity_id: sensor.dark_sky_overnight_low_temperature_1d
      lower: 60
      name: heat_available
    - platform: threshold
-     entity_id: sensor.dark_sky_daytime_high_temeperature_1
+     entity_id: sensor.dark_sky_daytime_high_temeperature_1d
      higher: 75
      name: AC_available
      
@@ -232,6 +244,11 @@ recorder:
   purge_interval: 0
 
 system_health: 
+
+googlehome:
+  devices:
+   - host: 192.168.86.91
+
 
 group: !include groups.yaml
 automation: !include automations.yaml

@@ -8,9 +8,6 @@ good_night:
   - data:
       entity_id: switch.tv_power
     service: switch.turn_off
-  - data:
-      entity_id: switch.hall_light
-    service: switch.turn_off
 '1542494027740':
   alias: Vacation
   sequence:
