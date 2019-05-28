@@ -7,6 +7,8 @@ before_install:
   - touch /home/travis/fullchain.pem
   - touch /home/travis/privkey.pem
 install:
+  - pip3 install homeassistant-pyozw
+  - pip3 install PyDispatcher
   - pip3 install homeassistant
 script:
   - hass -c ./config --script check_config
