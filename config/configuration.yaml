@@ -156,7 +156,7 @@ light:
    name: Hall Light
    entity_id: switch.hall_light
  - platform:  switch
-   name: Dinig Room Light
+   name: Dining Room Light
    entity_id: switch.dining_room_light
 #Z-wave
 zwave:
