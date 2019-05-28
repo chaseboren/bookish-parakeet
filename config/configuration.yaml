@@ -219,7 +219,7 @@ binary_sensor:
      name: heat_available
    - platform: threshold
      entity_id: sensor.dark_sky_daytime_high_temeperature_1d
-     higher: 75
+     upper: 75
      name: AC_available
      
 
