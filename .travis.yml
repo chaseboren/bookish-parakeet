@@ -6,6 +6,8 @@ before_install:
   - mv config/travis-secrets.yaml config/secrets.yaml
   - touch /home/travis/fullchain.pem
   - touch /home/travis/privkey.pem
+  - sudo apt-get update
+  - sudo apt-get install libudev-dev
 install:
   - pip3 install homeassistant-pyozw
   - pip3 install PyDispatcher
