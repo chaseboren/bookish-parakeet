@@ -1,65 +1,65 @@
-version: '3.1'
-services: 
-   homeassistant:
-      container_name: home-assistant
-      image: homeassistant/armhf-homeassistant:0.93.2
-      volumes:
-        - /home/chase/config:/config
-        - /etc/localtime:/etc/localtime:ro
-        - /home/dehydrated/dehydrated/certs/bookish-parakeet.duckdns.org:/home
-      devices:
-        - /dev/ttyACM0:/dev/zwave:rwm
-#        - /dev/vhci:/dev/hdmi/:rwm
-      restart: always
-      network_mode: host
-      depends_on: 
-  #      - "influxdb"
-        - "db"
- #  influxdb:
- #     container_name: influxdb
- #     restart: always
- #     image: arm32v7/influxdb:1.6.4
- #     volumes:
- #       - /srv/docker/influxdb:/etc/influxdb/
- #       - /srv/docker/influxdb/db:/var/lib/influxdb
- #     environment:
- #       INFLUXDB_DB: "home_assistant"
- #       INFLUXDB_GRAPHITE_ENABLED: 'true'
- #     network_mode: host
- #  grafana:
- #     container_name: grafana
- #     restart: always
- #     image: fg2it/grafana-armhf:v5.1.4
- #     depends_on:
- #       - "influxdb"
-#      volumes:
-#        - /srv/docker/grafana:/var/lib/grafana
-#      network_mode: host
-#      user: "472"
-#   telegraf:
-#     container_name: telegraf
-#     image: telegraf:latest
-#     volumes:
-#       - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-#       - /var/run/docker.sock:/var/run/docker.sock
+version: "3.1"
+services:
+  homeassistant:
+    container_name: home-assistant
+    image: homeassistant/armhf-homeassistant:0.104.3
+    volumes:
+      - /home/chase/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /home/dehydrated/dehydrated/certs/bookish-parakeet.duckdns.org:/home
+    devices:
+      - /dev/ttyACM0:/dev/zwave:rwm
+    #        - /dev/vhci:/dev/hdmi/:rwm
+    restart: always
+    network_mode: host
+    depends_on:
+      #      - "influxdb"
+      - "db"
+  #  influxdb:
+  #     container_name: influxdb
+  #     restart: always
+  #     image: arm32v7/influxdb:1.6.4
+  #     volumes:
+  #       - /srv/docker/influxdb:/etc/influxdb/
+  #       - /srv/docker/influxdb/db:/var/lib/influxdb
+  #     environment:
+  #       INFLUXDB_DB: "home_assistant"
+  #       INFLUXDB_GRAPHITE_ENABLED: 'true'
+  #     network_mode: host
+  #  grafana:
+  #     container_name: grafana
+  #     restart: always
+  #     image: fg2it/grafana-armhf:v5.1.4
+  #     depends_on:
+  #       - "influxdb"
+  #      volumes:
+  #        - /srv/docker/grafana:/var/lib/grafana
+  #      network_mode: host
+  #      user: "472"
+  #   telegraf:
+  #     container_name: telegraf
+  #     image: telegraf:latest
+  #     volumes:
+  #       - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+  #       - /var/run/docker.sock:/var/run/docker.sock
   #   links:
   #     - influxdb
-#     network_mode: host
-#     depends_on: 
-#       - "influxdb"
-#     restart: always   
-   mqtt:
+  #     network_mode: host
+  #     depends_on:
+  #       - "influxdb"
+  #     restart: always
+  mqtt:
     image: eclipse-mosquitto:latest
     restart: always
-   # ports:
-   #   - "1883:1883"
-   #   - "9001:9001"
+    # ports:
+    #   - "1883:1883"
+    #   - "9001:9001"
     volumes:
       - /home/chase/config:/mosquitto/config:ro
       - /opt/conf/mqtt/data:/mosquitto/data
       - /opt/conf/mqtt/log:/mosquitto/log
     network_mode: host
-   db:
+  db:
     image: postgres:latest
     restart: always
     network_mode: host
