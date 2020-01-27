@@ -2,7 +2,7 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Boren Home
   # Location required to calculate the time the sun rises and sets
-  latitude: !secret lat 
+  latitude: !secret lat
   longitude: !secret long
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 0
@@ -13,21 +13,21 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   # auth providers
-#  auth_providers:
-#   -type: trusted_networks
-#    trusted_networks:
-#    - 127.0.0.1
-#    - ::1
-#    - 192.168.0.0/24
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - 127.0.0.1
+        - ::1
+        - 192.168.0.0/24
+        - fd00::/8
 #    - fd00::/8
-
 
 # Show links to resources in log and frontend
 #introduction:
 
 # Enables the frontend
 frontend:
- javascript_version: latest
+  javascript_version: latest
 # Enables configuration UI
 config:
 
@@ -68,7 +68,7 @@ sensor:
     sensors:
       basement_temperature:
         value_template: !secret alarmvaluetemplate
-        unit_of_measurement: '°F'
+        unit_of_measurement: "°F"
         device_class: temperature
   - platform: yr
   - platform: darksky
@@ -115,12 +115,12 @@ cloud:
     filter:
       exclude_entities:
         - !secret alarmpanel
-#x        - media_player.roku
+    #x        - media_player.roku
     entity_config:
       light.ge_12724_3way_dimmer_switch_level:
         name: Master Bedroom Light
         aliases: bedroom light
-        room: bedroom 
+        room: bedroom
       light.ge_12724_3way_dimmer_switch_level_2:
         name: Kitchen Light
         room: Kitchen
@@ -152,12 +152,12 @@ cloud:
       script.1544995718682:
         aliases: select the roku
 light:
- - platform: switch 
-   name: Hall Light
-   entity_id: switch.hall_light
- - platform:  switch
-   name: Dining Room Light
-   entity_id: switch.dining_room_light
+  - platform: switch
+    name: Hall Light
+    entity_id: switch.hall_light
+  - platform: switch
+    name: Dining Room Light
+    entity_id: switch.dining_room_light
 #Z-wave
 zwave:
   usb_path: /dev/zwave
@@ -172,9 +172,9 @@ zwave:
 ios:
 
 simplisafe:
-  accounts: 
-   - username: !secret simplisafe_uname
-     password: !secret simplisafe_pwd
+  accounts:
+    - username: !secret simplisafe_uname
+      password: !secret simplisafe_pwd
 
 #Telegram
 
@@ -193,7 +193,6 @@ notify:
 
 climate:
   - platform: zwave
-      
 
 #panel_iframe:
 #  server:
@@ -201,54 +200,48 @@ climate:
 #    url: 'http://maggie.local:3000/d/EB2Zf0Zgz/maggie-statistics?refresh=1m&orgId=1'
 
 mqtt:
-    broker: 192.168.86.101
+  broker: 192.168.86.101
 
 binary_sensor:
-   - platform: mqtt
-     name: "Gas Sensor"
-     state_topic: "/gas_sensor/state/raspberrypi/out"
-     payload_on: "ON"
-     payload_off: "OFF"
-     device_class: gas
-     availability_topic: "/gas_sensor/availability/raspberrypi"
-     payload_available: "online"
-     payload_not_available: "offline"
-   - platform: threshold
-     entity_id: sensor.dark_sky_overnight_low_temperature_1d
-     lower: 60
-     name: heat_available
-   - platform: threshold
-     entity_id: sensor.dark_sky_daytime_high_temeperature_1d
-     upper: 75
-     name: AC_available
-     
+  - platform: mqtt
+    name: "Gas Sensor"
+    state_topic: "/gas_sensor/state/raspberrypi/out"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: gas
+    availability_topic: "/gas_sensor/availability/raspberrypi"
+    payload_available: "online"
+    payload_not_available: "offline"
+  - platform: threshold
+    entity_id: sensor.dark_sky_overnight_low_temperature_1d
+    lower: 60
+    name: heat_available
+  - platform: threshold
+    entity_id: sensor.dark_sky_daytime_high_temeperature_1d
+    upper: 75
+    name: AC_available
 
 media_player:
-   - platform: denon
-     host: 192.168.86.145
+  - platform: denon
+    host: 192.168.86.145
 
 roku:
-   - host: 192.168.86.144
+  - host: 192.168.86.144
 
 switch:
   platform: command_line
   switches:
     tv_power:
-      command_on: 'curl -X POST http://192.168.86.144:8060/keypress/PowerOn'
-      command_off: 'curl -X POST http://192.168.86.144:8060/keypress/PowerOff'
+      command_on: "curl -X POST http://192.168.86.144:8060/keypress/PowerOn"
+      command_off: "curl -X POST http://192.168.86.144:8060/keypress/PowerOff"
       command_state: 'curl -s GET http://192.168.86.144:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
       value_template: '{{ value == "ON" }}'
 
 recorder:
   db_url: !secret postgres
-  purge_interval: 0
-
-system_health: 
-
-googlehome:
-  devices:
-   - host: 192.168.86.91
-
+  purge_interval: 1
+# purge interval automatically set to 10 days rolling frame
+system_health:
 
 group: !include groups.yaml
 automation: !include automations.yaml
