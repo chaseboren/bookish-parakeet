@@ -18,7 +18,7 @@ homeassistant:
       trusted_networks:
         - 127.0.0.1
         - ::1
-        - 192.168.0.0/24
+        - 192.168.86.0/24
         - fd00::/8
 #    - fd00::/8
 
@@ -243,6 +243,8 @@ recorder:
   purge_interval: 1
 # purge interval automatically set to 10 days rolling frame
 system_health:
+
+mobile_app:
 
 group: !include groups.yaml
 automation: !include automations.yaml

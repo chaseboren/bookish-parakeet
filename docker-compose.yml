@@ -9,6 +9,7 @@ services:
       - /home/dehydrated/dehydrated/certs/bookish-parakeet.duckdns.org:/home
     devices:
       - /dev/ttyACM0:/dev/zwave:rwm
+      - /dev/ttyACM1:/dev/zigbee
     #        - /dev/vhci:/dev/hdmi/:rwm
     restart: always
     network_mode: host

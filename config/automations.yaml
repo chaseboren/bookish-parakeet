@@ -1,83 +1,132 @@
-- id: "1537673629494"
+- id: '1537673629494'
   alias: Alarm
   trigger:
-    - at: 06:00:00
-      platform: time
+  - at: 06:00:00
+    platform: time
   condition: []
   action:
-    - data:
-        brightness_pct: "2"
-        entity_id: light.ge_12724_3way_dimmer_switch_level
-      service: light.turn_on
-- id: "1538009987325"
+  - data:
+      brightness_pct: '2'
+      entity_id: light.ge_12724_3way_dimmer_switch_level
+    service: light.turn_on
+- id: '1538009987325'
   alias: Telegram Test
   trigger:
-    - event: start
-      platform: homeassistant
+  - event: start
+    platform: homeassistant
   condition: []
   action:
-    - data:
-        data:
-          inline_keyboard:
-            - Task 1:/command1, Task 2:/command2
-            - Task 3:/command3, Task 4:/command4
-        message: Using TheBorenBot to send a message
-        title: "*Send a message*"
-      service: notify.telegram_notify
-- id: "1542059544164"
+  - data:
+      data:
+        inline_keyboard:
+        - Task 1:/command1, Task 2:/command2
+        - Task 3:/command3, Task 4:/command4
+      message: Using TheBorenBot to send a message
+      title: '*Send a message*'
+    service: notify.telegram_notify
+- id: '1542059544164'
   alias: Basement Gas Alarm
   trigger:
-    - entity_id: binary_sensor.gas_sensor
-      from: "off"
-      platform: state
-      to: "on"
+  - entity_id: binary_sensor.gas_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
   condition: []
   action:
-    - data:
-        message: There is gas in the basement!!
-        title: ALERT
-      service: notify.telegram_notify
-- id: "1542675379332"
+  - data:
+      message: There is gas in the basement!!
+      title: ALERT
+    service: notify.telegram_notify
+- id: '1542675379332'
   alias: Away Lights
   trigger:
-    - event: sunset
-      offset: "-25"
-      platform: sun
-    - at: "21:30:00"
-      platform: time
+  - event: sunset
+    offset: '-25'
+    platform: sun
+  - at: '21:30:00'
+    platform: time
   condition:
-    - condition: state
-      entity_id: alarm_control_panel.simplisafe
-      state: arm_away
+  - condition: state
+    entity_id: alarm_control_panel.simplisafe
+    state: arm_away
   action:
-    - data:
-        entity_id: group_all lights
-      service: homeassistant.toggle
-- id: "1546703559532"
+  - data:
+      entity_id: group_all lights
+    service: homeassistant.toggle
+- id: '1546703559532'
   alias: Normal Heat Program Day
   trigger:
-    - at: 06:00:00
-      platform: time
+  - at: 06:00:00
+    platform: time
   condition:
-    - condition: state
-      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
-      state: heat
+  - condition: state
+    entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+    state: heat
   action:
-    - data:
-        entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
-        temperature: "69"
-      service: climate.set_temperature
-- id: "1546703770731"
+  - data:
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+      temperature: '69'
+    service: climate.set_temperature
+- id: '1546703770731'
   alias: Normal Heat Program Night
   trigger:
-    - at: "22:07:00"
-      platform: time
+  - at: '22:07:00'
+    platform: time
   condition:
-    - condition: state
-      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
-      state: heat
+  - condition: state
+    entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+    state: heat
   action:
-    - data:
-        entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
-        temperature: "65"
-      service: climate.set_temperature
+  - data:
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
+      temperature: '65'
+    service: climate.set_temperature
+- id: '1580606472728'
+  alias: Garage Light On
+  description: ''
+  trigger:
+  - entity_id: switch.jasco_products_14291_in_wall_smart_switch_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - device_id: d1db224f1de142b6a7256faf26dd1988
+    domain: light
+    entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+    type: turn_on
+- id: '1580606832639'
+  alias: Garage Lights Off
+  description: ''
+  trigger:
+  - device_id: 9fdbbe38ffc043339bdcb4767ca4bfd2
+    domain: switch
+    entity_id: switch.jasco_products_14291_in_wall_smart_switch_switch
+    platform: device
+    type: turned_off
+  condition: []
+  action:
+  - entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+    service: light.turn_off
+- id: '1580609099494'
+  alias: Evening LIghts
+  description: ''
+  trigger:
+  - event: sunset
+    offset: '-15'
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: group.outdoorlights
+    service: homeassistant.turn_on
+- id: '1581040466959'
+  alias: Outdoor Lights Off
+  description: ''
+  trigger:
+  - at: '22:00'
+    platform: time
+  condition: []
+  action:
+  - entity_id: group.outdoorlights
+    service: homeassistant.turn_off

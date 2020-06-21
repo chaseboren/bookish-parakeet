@@ -1,12 +1,13 @@
 good_night:
   alias: Good Night
   sequence:
-  - data:
-      entity_id: group.all_lights
+  - data: {}
+    entity_id: group.indoorlights
     service: homeassistant.turn_off
-  - service: alarm_control_panel.alarm_arm_home
-  - data:
-      entity_id: switch.tv_power
+  - entity_id: alarm_control_panel.2431_fort_dr_alarm_control_panel
+    service: alarm_control_panel.alarm_arm_home
+  - data: {}
+    entity_id: switch.tv_power
     service: switch.turn_off
 '1542494027740':
   alias: Vacation
