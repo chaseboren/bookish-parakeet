@@ -1,18 +1,16 @@
-default_view:
-  view: yes
-  icon: mdi:home
+# Example configuration.yaml entry
+
+outdoorLights:
+  name: Outdoor Lights
   entities:
-    - group.all_lights
-    - group.all_automations
-    - group.all_switches
-    - sun.sun
-    - sensor.yr_symbol
-    - media_player.kitchen
-    - media_player.living_room
-    - media_player.65_tcl_roku_tv
-    - media_player.denon_avrs640h
-    - alarm_control_panel.simplisafe
-    - device_tracker.chase_boren
-    - switch.ge_14282_plugin_twooutlet_smart_switch_switch
-    - switch.tv_power
-    - binary_sensor.gas_sensor
+    - switch.jasco_products_14291_in_wall_smart_switch_switch_2
+    - switch.jasco_products_14291_in_wall_smart_switch_switch
+
+indoorLights:
+  name: Indoor Lights
+  entities:
+    - light.ge_12724_3way_dimmer_switch_level
+    - light.ge_12724_3way_dimmer_switch_level_2
+    - switch.hall_light
+    - light.ge_12724_3way_dimmer_switch_level_3
+    - switch.dining_room_light

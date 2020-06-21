@@ -1,17 +1,19 @@
 language: python
 python:
-  - "3.5"
+  - "3.7"
 before_install:
   - mv travis-password.txt password.txt
   - mv config/travis-secrets.yaml config/secrets.yaml
   - touch /home/travis/fullchain.pem
   - touch /home/travis/privkey.pem
+  - sudo apt-get update
+  - sudo apt-get install libudev-dev
 install:
+  - pip3 install homeassistant-pyozw
+  - pip3 install PyDispatcher
   - pip3 install homeassistant
 script:
   - hass -c ./config --script check_config
   - docker-compose config
 after_success:
   - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
-
-

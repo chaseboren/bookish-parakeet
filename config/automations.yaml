@@ -81,3 +81,52 @@
       entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1
       temperature: '65'
     service: climate.set_temperature
+- id: '1580606472728'
+  alias: Garage Light On
+  description: ''
+  trigger:
+  - entity_id: switch.jasco_products_14291_in_wall_smart_switch_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - device_id: d1db224f1de142b6a7256faf26dd1988
+    domain: light
+    entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+    type: turn_on
+- id: '1580606832639'
+  alias: Garage Lights Off
+  description: ''
+  trigger:
+  - device_id: 9fdbbe38ffc043339bdcb4767ca4bfd2
+    domain: switch
+    entity_id: switch.jasco_products_14291_in_wall_smart_switch_switch
+    platform: device
+    type: turned_off
+  condition: []
+  action:
+  - entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+    service: light.turn_off
+- id: '1580609099494'
+  alias: Evening LIghts
+  description: ''
+  trigger:
+  - event: sunset
+    offset: '-15'
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: group.outdoorlights
+    service: homeassistant.turn_on
+- id: '1581040466959'
+  alias: Outdoor Lights Off
+  description: ''
+  trigger:
+  - at: '22:00'
+    platform: time
+  condition: []
+  action:
+  - entity_id: group.outdoorlights
+    service: homeassistant.turn_off
