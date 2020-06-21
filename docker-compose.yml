@@ -2,7 +2,7 @@ version: "3.1"
 services:
   homeassistant:
     container_name: home-assistant
-    image: homeassistant/armhf-homeassistant:0.104.3
+    image: homeassistant/armhf-homeassistant:0.111.3
     volumes:
       - /home/chase/config:/config
       - /etc/localtime:/etc/localtime:ro
